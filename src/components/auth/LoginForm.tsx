@@ -124,7 +124,7 @@ export function LoginForm() {
                 <p className="text-sm text-gray-600">
                   You don't have an account?{" "}
                   <Link 
-                    href="/signup" 
+                    href="/register" 
                     className="text-pink-800 hover:text-blue-800 font-semibold transition-colors"
                   >
                     Create an account
