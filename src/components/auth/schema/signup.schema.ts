@@ -11,6 +11,11 @@ export const SignupFormSchema = z.object({
 //   role: z.enum(["artist", "artist_manager"], { 
 //     required_error: "Please select a role" 
 //   }),
+full_name: z.string().min(1, { message: "Full name is required" }).trim(),
+  username: z
+    .string()
+    .min(3, { message: "Username must be at least 3 characters" })
+    .max(20, { message: "Username must be at most 20 characters" }),
 }).refine((data) => data.password === data.confirm_password, {
   message: "Passwords do not match",
   path: ["confirmPassword"],
