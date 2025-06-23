@@ -18,8 +18,8 @@ const steps = [
   {
     icon: Cpu,
     step: "03",
-    title: "AI Analysis",
-    description: "Our advanced algorithm processes your data and finds patterns in your viewing behavior.",
+    title: "Analysis",
+    description: "Our algorithm processes your data and finds patterns in your viewing behavior.",
   },
   {
     icon: Film,

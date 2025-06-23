@@ -13,7 +13,7 @@ export function CTA() {
               <span className="text-primary block">Favorite Movie?</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-[600px] mx-auto">
-              Join thousands of movie enthusiasts who trust our AI-powered recommendations to find their perfect film
+              Join thousands of movie enthusiasts who trust our smart recommendations to find their perfect film
               matches.
             </p>
           </div>
@@ -29,8 +29,6 @@ export function CTA() {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
-
-            <p className="text-sm text-muted-foreground">Free to start. No credit card required. Cancel anytime.</p>
           </div>
 
           <div className="mt-16 grid gap-8 md:grid-cols-3 text-left">
@@ -42,7 +40,7 @@ export function CTA() {
             </div>
             <div className="space-y-2">
               <h3 className="font-semibold">🤖 Smart Learning</h3>
-              <p className="text-sm text-muted-foreground">Our AI gets smarter with every rating and interaction</p>
+              <p className="text-sm text-muted-foreground">Our website gets smarter with every rating and interaction</p>
             </div>
             <div className="space-y-2">
               <h3 className="font-semibold">📱 Cross-Platform</h3>

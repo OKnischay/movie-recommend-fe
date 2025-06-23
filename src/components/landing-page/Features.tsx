@@ -4,38 +4,39 @@ import { Brain, Users, Zap, Target, Shield, Sparkles } from "lucide-react"
 const features = [
   {
     icon: Brain,
-    title: "Smart AI Algorithm",
+    title: "NLP Review Analysis",
     description:
-      "Advanced machine learning models analyze your preferences and viewing patterns to deliver highly accurate recommendations.",
+      "Advanced Natural Language Processing analyzes your written reviews to understand nuanced preferences beyond simple ratings.",
   },
   {
     icon: Target,
-    title: "Precision Matching",
+    title: "Hybrid Filtering Engine",
     description:
-      "Our algorithm considers genre preferences, mood, ratings, and even the time of day to suggest the perfect movie.",
+      "Combines Content-Based and Collaborative Filtering for superior accuracy, using both movie attributes and user behavior patterns.",
   },
   {
     icon: Users,
-    title: "Social Integration",
+    title: "Collaborative Intelligence",
     description:
-      "Connect with friends, see what they're watching, and get recommendations based on your social circle's preferences.",
+      "Learns from users with similar tastes and preferences to discover movies you might have missed but will love.",
   },
   {
     icon: Zap,
-    title: "Real-time Updates",
+    title: "Content-Based Matching",
     description:
-      "Recommendations update instantly as you rate movies, ensuring your suggestions get better with every interaction.",
+      "Analyzes movie attributes like genre, director, cast, and plot themes to find films that match your specific interests.",
   },
   {
     icon: Shield,
-    title: "Privacy First",
+    title: "Location-Aware Recommendations",
     description:
-      "Your data is encrypted and secure. We never share your viewing habits or personal information with third parties.",
+      "Considers your location for regional preferences, local cinema availability, and culturally relevant content suggestions.",
   },
   {
     icon: Sparkles,
-    title: "Mood-Based Suggestions",
-    description: "Tell us your mood, and we'll recommend movies that perfectly match how you're feeling right now.",
+    title: "Sentiment Understanding",
+    description:
+      "Goes beyond ratings to understand the emotional context of your reviews and what truly resonates with you.",
   },
 ]
 
@@ -56,7 +57,7 @@ export function Features() {
             <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-primary" />
+                  {feature.icon && <feature.icon className="w-6 h-6 text-primary" />}
                 </div>
                 <CardTitle className="text-xl">{feature.title}</CardTitle>
               </CardHeader>

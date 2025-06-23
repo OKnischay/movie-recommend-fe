@@ -94,47 +94,20 @@ export default function Footer() {
         </div>
 
         {/* Simple Newsletter Section */}
-        <div className="mb-8 p-6 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/20">
-          <div className="text-center space-y-4">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-              Get Movie Recommendations
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400">
-              Join our community and get personalized movie recommendations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              <Button className="px-6 py-3 bg-blue-600 hover:bg-blue-700">
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Bottom Section - Simplified */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-6 border-t border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 py-3 border-t border-slate-200 dark:border-slate-700">
           <p className="text-sm text-slate-600 dark:text-slate-400">
             &copy; {new Date().getFullYear()} CineMatch. All rights reserved.
           </p>
-
-          <div className="flex items-center space-x-4 text-sm text-slate-600 dark:text-slate-400">
-            <span>Privacy Policy</span>
-            <span>•</span>
-            <span>Terms of Service</span>
-            <span>•</span>
-            <span>Contact</span>
-          </div>
         </div>
       </div>
 
       {/* Minimal decorative elements */}
-      <div className="absolute bottom-4 right-4 opacity-10">
+      {/* <div className="absolute bottom-4 right-4 opacity-10">
         <Film className="w-8 h-8 text-blue-500" />
-      </div>
+      </div> */}
     </footer>
   )
 }
