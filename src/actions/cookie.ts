@@ -8,7 +8,7 @@ export const setCookie = async (name: TCookie, value: string, date: number) => {
     expires: new Date(date),
     secure: false,
     httpOnly: false,
-    sameSite: true,
+    sameSite: "lax",
   });
 };
 
