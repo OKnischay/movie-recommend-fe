@@ -4,16 +4,16 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { LoginFormSchema } from "./schema/login.schema";
-// import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-// import { handleLogin } from "@/actions/auth-actions";
 import { PasswordInput } from "@/components/ui/password-input";
 import { Mail,Lock } from "lucide-react";
+import { handleLogin } from "@/actions/auth-actions";
+import { toast } from "sonner";
 
 export function LoginForm() {
   const router = useRouter();
@@ -28,23 +28,54 @@ export function LoginForm() {
     },
   });
 
+  // const onSubmit = async (values: z.infer<typeof LoginFormSchema>) => {
+  //     try {
+  //       setIsLoading(true);
+  //       const result = await handleLogin(values);
+  //       if (result.success) {
+  //         toast.success("Login successful");
+  //         router.replace("/");
+  //       } else {
+  //         toast.error(result.error || "Something went wrong. Please try again.");
+  //       }
+  //     } catch (error) {
+  //       console.error("Login error:", error);
+  //       toast.error("Something went wrong. Please try again.");
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  // };
   const onSubmit = async (values: z.infer<typeof LoginFormSchema>) => {
-    //   try {
-    //     setIsLoading(true);
-    //     const result = await handleLogin(values);
-    //     if (result.success) {
-    //       toast.success("Login successful");
-    //       router.replace("/");
-    //     } else {
-    //       toast.error(result.error || "Something went wrong. Please try again.");
-    //     }
-    //   } catch (error) {
-    //     console.error("Login error:", error);
-    //     toast.error("Something went wrong. Please try again.");
-    //   } finally {
-    //     setIsLoading(false);
-    //   }
-  };
+  try {
+    setIsLoading(true);
+
+    const result = await handleLogin(values);
+
+    if (result.success) {
+      toast.success("Login successful");
+
+      const role = result.user?.role;
+      if (!role) {
+        toast.error("User role not found.");
+        return;
+      }
+
+      if (role === "admin") {
+        router.replace("/admin");
+      } else {
+        router.replace("/user");
+      }
+    } else {
+      toast.error(result.error || "Something went wrong. Please try again.");
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    toast.error("Something went wrong. Please try again.");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
 
   return (
     <div className="p-8 md:p-12">

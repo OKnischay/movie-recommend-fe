@@ -11,8 +11,13 @@ import * as z from "zod";
 import { SignupFormSchema } from "./schema/signup.schema";
 import { Mail, Lock } from "lucide-react";
 import { PasswordInput } from "@/components/ui/password-input";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { handleSignup } from "@/actions/signup";
+
 
 export function SignupForm() {
+  const router = useRouter();
   const [step, setStep] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -22,21 +27,35 @@ export function SignupForm() {
       email: "",
       password: "",
       confirm_password: "",
-      full_name: "",
       username: "",
+      full_name: "",
+      role: "viewer",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof SignupFormSchema>) => {
-    console.log("Final submitted values:", values);
-    // Submit to API here
-  };
+     setIsLoading(true);
+  const result = await handleSignup(values);
+  setIsLoading(false);
+
+  if (result.success) {
+    toast.success("Account created successfully!");
+    router.replace("/login");
+  } else {
+    toast.error(result.error || "Signup failed. Please try again.");
+  }
+};
 
   const handleNext = async () => {
-    const valid = await form.trigger(["email", "password", "confirm_password"]);
-    if (valid) {
-      setStep(2);
+  const valid = await form.trigger(["email", "password", "confirm_password"]);
+  if (valid) {
+    const values = form.getValues();
+    if (values.password !== values.confirm_password) {
+      form.setError("confirm_password", { message: "Passwords don't match" });
+      return;
     }
+    setStep(2);
+  }
   };
 
   return (
@@ -56,7 +75,7 @@ export function SignupForm() {
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem className="space-y-2">
+                  <FormItem className="space-y-2  dark:text-gray-800">
                     <FormControl>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -77,7 +96,7 @@ export function SignupForm() {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem className="space-y-2">
+                  <FormItem className="space-y-2  dark:text-gray-800">
                     <FormControl>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -97,7 +116,7 @@ export function SignupForm() {
                 control={form.control}
                 name="confirm_password"
                 render={({ field }) => (
-                  <FormItem className="space-y-2">
+                  <FormItem className="space-y-2  dark:text-gray-800">
                     <FormControl>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -129,7 +148,7 @@ export function SignupForm() {
                 control={form.control}
                 name="full_name"
                 render={({ field }) => (
-                  <FormItem className="space-y-2">
+                  <FormItem className="space-y-2  dark:text-gray-800">
                     <FormControl>
                       <Input placeholder="Your full name" {...field} className="py-3" />
                     </FormControl>
@@ -142,7 +161,7 @@ export function SignupForm() {
                 control={form.control}
                 name="username"
                 render={({ field }) => (
-                  <FormItem className="space-y-2">
+                  <FormItem className="space-y-2  dark:text-gray-800">
                     <FormControl>
                       <Input placeholder="Choose a username" {...field} className="py-3" />
                     </FormControl>
@@ -155,14 +174,14 @@ export function SignupForm() {
                 <Button
                   type="button"
                   onClick={() => setStep(1)}
-                   className="w-1/2 bg-amber-300 hover:bg-amber-400 text-white py-3 rounded-xl font-semibold transform hover:scale-[1.02] transition-all duration-200 shadow-lg"
+                   className="w-1/2 bg-amber-300 hover:bg-amber-400  dark:text-gray-800 text-white py-3 rounded-xl font-semibold transform hover:scale-[1.02] transition-all duration-200 shadow-lg"
                 >
                   Back
                 </Button>
 
                 <Button
                   type="submit"
-                   className="w-1/2 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transform hover:scale-[1.02] transition-all duration-200 shadow-lg"
+                   className="w-1/2 bg-blue-600 hover:bg-blue-700  text-white py-3 rounded-xl font-semibold transform hover:scale-[1.02] transition-all duration-200 shadow-lg"
                   disabled={isLoading}
                 >
                   {isLoading ? "Submitting..." : "Sign Up"}
