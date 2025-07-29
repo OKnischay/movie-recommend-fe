@@ -110,7 +110,8 @@ export function LoginForm() {
                     />
                   </div>
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="text-sm text-red-500 mt-1 min-h-[0] leading-tight" />
+
               </FormItem>
             )}
           />
@@ -127,8 +128,8 @@ export function LoginForm() {
                   className="pl-10 py-3 border-gray-300 rounded-xl focus:border-blue-500 focus:ring-blue-500" />
                     </div>
                 </FormControl>
-                
-                <FormMessage />
+              <FormMessage className="text-sm text-red-500 mt-1 min-h-[0] leading-tight" />
+
               </FormItem>
             )}
           />
@@ -141,7 +142,7 @@ export function LoginForm() {
                   <span className="text-sm text-gray-600">Remember me</span>
                 </label> */}
                 <Link
-                  href="/forgot-password"
+                  href="/forgotpassword"
                   className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
                 >
                   Forgot password?
